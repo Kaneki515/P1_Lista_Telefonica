@@ -5,18 +5,22 @@ $(document).ready(function () {
 
     // adicionar
     $('#btn-add').click(function () {
+        let contato = [];
+
         let nome = $('#addNome').val();
         let telefone = $('#addTelefone').val();
         let telefoneEValido = checarTelefone(telefone);
+
+
+
         if (telefoneEValido) {
-            codigo++;
-            let contato = {
-                id: codigo,
-                nome: nome,
-                telefone: telefone
-            };
+            contato.codigo = codigo++;
+            contato.nome = $('#addNome').val();
+            contato.telefone = $('#addTelefone').val();
+
             listaContato.push(contato); // Adiciona o contato ao array
 
+            console.log(contato);
             //inclusao na tabela
             let conteudo = `<tr>
                                 <td class="tCodigo">${codigo}</td>
