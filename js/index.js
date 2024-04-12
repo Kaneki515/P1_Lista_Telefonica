@@ -7,25 +7,23 @@ $(document).ready(function () {
     $('#btn-add').click(function () {
         let contato = [];
 
-        let nome = $('#addNome').val();
-        let telefone = $('#addTelefone').val();
-        let telefoneEValido = checarTelefone(telefone);
-
-
-
+        // let nome = $('#addNome').val();
+        // let telefone = $('#addTelefone').val();
+        // let telefoneEValido = checarTelefone(telefone);
+        contato.codigo = codigo++;
+        contato.nome = $('#addNome').val();
+        contato.telefone = $('#addTelefone').val();
+        let telefoneEValido = checarTelefone(contato.telefone);
+        listaContato.push(contato);
         if (telefoneEValido) {
-            contato.codigo = codigo++;
-            contato.nome = $('#addNome').val();
-            contato.telefone = $('#addTelefone').val();
-
-            listaContato.push(contato); // Adiciona o contato ao array
+             // Adiciona o contato ao array
 
             console.log(contato);
             //inclusao na tabela
             let conteudo = `<tr>
-                                <td class="tCodigo">${codigo}</td>
-                                <td class="tNome">${nome}</td>
-                                <td class="tTelefone">${telefone}</td>
+                                <td class="tCodigo">${contato.codigo}</td>
+                                <td class="tNome">${contato.nome}</td>
+                                <td class="tTelefone">${contato.telefone}</td>
                                 <td>
                                     <a href="#" class="btn-edit">
                                         <i class="material-icons">edit</i>
