@@ -7,17 +7,14 @@ $(document).ready(function () {
     $('#btn-add').click(function () {
         let contato = [];
 
-        // let nome = $('#addNome').val();
-        // let telefone = $('#addTelefone').val();
-        // let telefoneEValido = checarTelefone(telefone);
         contato.codigo = codigo++;
         contato.nome = $('#addNome').val();
         contato.telefone = $('#addTelefone').val();
         let telefoneEValido = checarTelefone(contato.telefone);
-        listaContato.push(contato);
-        if (telefoneEValido) {
-             // Adiciona o contato ao array
 
+        listaContato.push(contato);
+        
+        if (telefoneEValido) {
             console.log(contato);
             //inclusao na tabela
             let conteudo = `<tr>
