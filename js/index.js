@@ -93,6 +93,7 @@ $(document).ready(function () {
         console.log("Contato removido:", listaContato); // Exibe a lista de contatos atualizada no console
     });
 
+    // Pesquisar Nome
     $('#btn-find').click(function () {
         let nomePesquisa = $('#findNome').val().toLowerCase(); // Convertendo para minúsculas para uma comparação de caso insensível
     
@@ -107,6 +108,7 @@ $(document).ready(function () {
         });
     });
 
+    // Mostrar Todos
     $('#btn-show-all').click(function () {
         $('#lista tr').show();
     });
