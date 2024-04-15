@@ -81,6 +81,17 @@ $(document).ready(function () {
         });
     });
 
-    
+    // Delete
+    $('#lista').on('click', '.btn-del', function () {
+        let row = $(this).closest('tr');
+        let codigoAtual = row.find('.tCodigo').text();
+
+        let delContatoIndex = listaContato.findIndex(contato => contato.codigo == codigoAtual);
+        // Verifica se o contato foi encontrado na lista
+        listaContato.splice(delContatoIndex); // Remove o contato encontrado
+        row.remove();
+        console.log("Contato removido:", listaContato); // Exibe a lista de contatos atualizada no console
+
+    });
 
 });
