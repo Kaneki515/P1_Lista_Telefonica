@@ -91,7 +91,25 @@ $(document).ready(function () {
         listaContato.splice(delContatoIndex); // Remove o contato encontrado
         row.remove();
         console.log("Contato removido:", listaContato); // Exibe a lista de contatos atualizada no console
-
     });
+
+    $('#btn-find').click(function () {
+        let nomePesquisa = $('#findNome').val().toLowerCase(); // Convertendo para minúsculas para uma comparação de caso insensível
+    
+        $('#lista tr').each(function () { // Iterando sobre cada linha da tabela
+            let nomeContato = $(this).find('.tNome').text().toLowerCase(); // Obtendo o nome do contato na linha atual
+    
+            if (nomeContato.includes(nomePesquisa)) { // Verificando se o nome do contato inclui o termo de pesquisa
+                $(this).show(); // Exibindo a linha se houver correspondência
+            } else {
+                $(this).hide(); // Ocultando a linha se não houver correspondência
+            }
+        });
+    });
+
+    $('#btn-show-all').click(function () {
+        $('#lista tr').show();
+    });
+
 
 });
