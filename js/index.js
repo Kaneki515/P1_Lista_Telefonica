@@ -44,18 +44,18 @@ $(document).ready(function () {
 
     //Update
     $('#lista').on('click', '.btn-edit', function () {
-        let row = $(this).closest('tr'); // Obtém a linha clicada 
-        let codigoAtual = row.find('.tCodigo').text(); // Obtém o texto do elemento com classe 'tCodigo' dentro da linha
-        let nomeAtual = row.find('.tNome').text(); // Obtém o texto do elemento com classe 'tNome' dentro da linha
-        let telefoneAtual = row.find('.tTelefone').text(); // Obtém o texto do elemento com classe 'tTelefone' dentro da linha
+        let row = $(this).closest('tr');
+        let codigoAtual = row.find('.tCodigo').text();
 
         $('#upId').val(codigoAtual);
-        $('#upNome').val(nomeAtual);
-        $('#upTelefone').val(telefoneAtual);
+        $('#upNome').val(row.find('.tNome').text());
+        $('#upTelefone').val(row.find('.tTelefone').text());
         $('.tabs').tabs('select', 'up');
 
         // Encontrar o contato correspondente na lista de contatos
-        let upContato = listaContato.find(contato => contato.codigo === parseInt(codigoAtual));
+        let upContatoIndex = listaContato.findIndex(contato => contato.codigo === parseInt(codigoAtual));
+        let upContato = listaContato[upContatoIndex];
+
         // Atualizar o objeto contato ao editar
         $('#btn-up').off('click').on('click', function () {
             let novoNome = $('#upNome').val();
@@ -72,9 +72,15 @@ $(document).ready(function () {
                 row.find('.tNome').text(novoNome);
                 row.find('.tTelefone').text(novoTelefone);
                 $('#upTelefone').removeClass('red');
+
+                // Atualizar os valores no array listaContato
+                listaContato[upContatoIndex] = upContato;
             } else {
                 $('#upTelefone').addClass('red');
             }
         });
     });
+
+    
+
 });
