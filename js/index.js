@@ -97,7 +97,7 @@ $(document).ready(function () {
     $('#btn-find').click(function () {
         let nomePesquisa = $('#findNome').val().toLowerCase(); // Convertendo para minúsculas para uma comparação de caso insensível
     
-        $('#lista tr').each(function () { // Iterando sobre cada linha da tabela
+        $('#lista tr').each(function () { 
             let nomeContato = $(this).find('.tNome').text().toLowerCase(); // Obtendo o nome do contato na linha atual
     
             if (nomeContato.includes(nomePesquisa)) { // Verificando se o nome do contato inclui o termo de pesquisa
@@ -110,6 +110,7 @@ $(document).ready(function () {
 
     // Mostrar Todos
     $('#btn-show-all').click(function () {
+        $('#findNome').text('');
         $('#lista tr').show();
     });
 
