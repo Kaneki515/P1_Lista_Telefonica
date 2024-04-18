@@ -4,7 +4,12 @@ $(document).ready(function () {
     let codigo = 0;
     let listaContato = []; // Array para armazenar os contatos
 
-    // adicionar
+    // Função para verificar se o telefone possui pelo menos nove caracteres
+    function checarTelefone(telefone) {
+        return telefone.length >= 9;
+    }
+
+    // Funcionalidade 1 - Adicionar um registro
     $('#btn-add').click(function () {
         let contato = {}; // Cria um novo objeto contato a cada vez que um novo contato é adicionado
 
@@ -42,7 +47,7 @@ $(document).ready(function () {
         }
     });
 
-    //Update
+    // Funcionalidade 2 - Atualizar um registro parte 1
     $('#lista').on('click', '.btn-edit', function () {
         let row = $(this).closest('tr');
         let codigoAtual = row.find('.tCodigo').text();
@@ -56,7 +61,7 @@ $(document).ready(function () {
         let upContatoIndex = listaContato.findIndex(contato => contato.codigo === parseInt(codigoAtual));
         let upContato = listaContato[upContatoIndex];
 
-        // Atualizar o objeto contato ao editar
+        // Funcionalidade 3 - Atualizar um registro parte 2
         $('#btn-up').off('click').on('click', function () {
             let novoNome = $('#upNome').val();
             let novoTelefone = $('#upTelefone').val();
@@ -81,26 +86,26 @@ $(document).ready(function () {
         });
     });
 
-    // Delete
+    // Funcionalidade 4 - Excluir um registro
     $('#lista').on('click', '.btn-del', function () {
         let row = $(this).closest('tr');
         let codigoAtual = row.find('.tCodigo').text();
 
         let delContatoIndex = listaContato.findIndex(contato => contato.codigo == codigoAtual);
         // Verifica se o contato foi encontrado na lista
-        listaContato.splice(delContatoIndex); // Remove o contato encontrado
+        listaContato.splice(delContatoIndex, 1); // Remove o contato encontrado
         row.remove();
         console.log("Contato removido:", listaContato); // Exibe a lista de contatos atualizada no console
     });
 
-    // Pesquisar Nome
+    // Funcionalidade 5 - Procurar um registro
     $('#btn-find').click(function () {
         let nomePesquisa = $('#findNome').val().toLowerCase(); // Convertendo para minúsculas para uma comparação de caso insensível
     
         $('#lista tr').each(function () { 
             let nomeContato = $(this).find('.tNome').text().toLowerCase(); // Obtendo o nome do contato na linha atual
     
-            if (nomeContato.includes(nomePesquisa)) { // Verificando se o nome do contato inclui o termo de pesquisa
+            if (nomeContato === nomePesquisa) { // Verificando se o nome do contato é igual ao termo de pesquisa
                 $(this).show(); // Exibindo a linha se houver correspondência
             } else {
                 $(this).hide(); // Ocultando a linha se não houver correspondência
@@ -108,11 +113,9 @@ $(document).ready(function () {
         });
     });
 
-    // Mostrar Todos
+    // Funcionalidade 6 - Mostrar um registro
     $('#btn-show-all').click(function () {
-        $('#findNome').text('');
-        $('#lista tr').show();
+        $('#findNome').val(''); // Limpar o campo de pesquisa
+        $('#lista tr').show(); // Exibir todas as linhas da tabela
     });
-
-
 });
