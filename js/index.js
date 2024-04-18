@@ -13,7 +13,7 @@ $(document).ready(function () {
     $('#btn-add').click(function () {
         let contato = {}; // Cria um novo objeto contato a cada vez que um novo contato é adicionado
 
-        contato.nome = $('#addNome').val();
+        contato.nome = $('#addNome').val().toLowerCase();
         contato.telefone = $('#addTelefone').val();
         let telefoneEValido = checarTelefone(contato.telefone);
 
@@ -63,7 +63,7 @@ $(document).ready(function () {
 
         // Funcionalidade 3 - Atualizar um registro parte 2
         $('#btn-up').off('click').on('click', function () {
-            let novoNome = $('#upNome').val();
+            let novoNome = $('#upNome').val().toLowerCase();
             let novoTelefone = $('#upTelefone').val();
 
             let telefoneEValido = checarTelefone(novoTelefone);
